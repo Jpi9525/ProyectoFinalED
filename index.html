@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crecimiento de Datos en una Base de Datos usando Laplace</title>
+    <style>
+        body {
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        header {
+            background: linear-gradient(90deg, #006400, #0056b3);
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+
+        nav {
+            margin-top: 10px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 0 10px;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        nav a:hover {
+            background-color: white;
+            color: #0056b3;
+        }
+
+        main {
+            margin: 120px auto 20px auto; /* Ajusta el margen superior para evitar superposición con el header */
+            max-width: 900px;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        section {
+            margin-bottom: 40px;
+        }
+
+        section h2 {
+            font-size: 1.8em;
+            color: #0056b3;
+            border-bottom: 2px solid #006400;
+            padding-bottom: 5px;
+        }
+
+        section p, section ul {
+            font-size: 1em;
+            color: #333;
+        }
+
+        section ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+
+        footer {
+            background-color: #006400;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: 20px;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Crecimiento de Datos en una Base de Datos usando Laplace</h1>
+        <nav>
+            <a href="#introduccion">Introducción</a>
+            <a href="#justificacion">Justificación</a>
+            <a href="#antecedentes">Antecedentes</a>
+            <a href="#desarrollo">Desarrollo</a>
+            <a href="#conclusion">Conclusión</a>
+            <a href="#referencias">Referencias</a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="introduccion">
+            <h2>Introducción</h2>
+            <p>El crecimiento de datos es importante ya que nos ayuda a realizar literalmente cualquier actividad relacionada con la informática. Este crecimiento puede modelarse para poder predecir el comportamiento del futuro y tomar decisiones.</p>
+            <p>En este proyecto, presentaré el cómo el modelo matemático del crecimiento de datos en una base de datos se puede analizar con Laplace. A través de este enfoque abordaré la modelización del crecimiento de datos, al igual que su utilidad en la predicción de tamaños futuros de una base de datos y la planificación de recursos. Este análisis es importante ya que se usa para garantizar que los sistemas puedan escalar y manejar de buena manera la demanda creciente de información en entornos tecnológicos modernos.</p>
+        </section>
+
+        <section id="justificacion">
+            <h2>Justificación</h2>
+            <p>Decidí aplicar Laplace al tema ya que es un tema que me gusto mucho aprender y tambien nos ayuda a simplificar el problema y podemos realizar actividades de manera eficiente y rápida, mi punto es querer demostrar la utilidad de laplace en las ED.</p>
+        </section>
+
+        <section id="antecedentes">
+            <h2>Antecedentes</h2>
+            <h3>Bases de datos</h3>
+            <p>Una base de datos es una recopilación organizada de información o datos estructurados, que normalmente se almacena de forma electrónica en un sistema informático. Normalmente, una base de datos está controlada por un sistema de gestión de bases de datos (DBMS). En conjunto, los datos y el DBMS, junto con las aplicaciones asociadas a ellos, reciben el nombre de sistema de bases de datos, abreviado normalmente a simplemente base de datos.</p>
+            <h3>Ecuaciones Diferenciales</h3>
+            <p>En términos generales, una ecuación diferencial es una ecuación que involucra a las derivadas de una función con la propia función y/o las variables de las que depende. En sus aplicaciones, las funciones generalmente representan cantidades y las derivadas son las tasas de variación de estas cantidades.</p>
+            <p>En este caso, el comportamiento dinámico del crecimiento de datos puede describirse mediante la ecuación diferencial:</p>
+            <p>(dD(t))/dt = kD(t)</p>
+            <p>Donde D(t) es el tamaño de los datos en el tiempo t y k es la tasa de crecimiento proporcional. Este modelo matemático estándar sale de los crecimientos exponenciales comunes en sistemas que dependen de la acumulación continua de datos.</p>
+            <h3>Crecimiento exponencial</h3>
+            <p>El crecimiento exponencial es aquel donde el incremento es proporcional al valor de la función en ese momento del tiempo. En consecuencia, la variación es cada vez mayor que en el periodo anterior. Para explicarlo de otro modo, el crecimiento exponencial implica que el aumento en la función es cada vez más rápido en el tiempo.</p>
+            <p>En término formales, podríamos decir que existe crecimiento exponencial cuando se cumple lo siguiente:</p>
+            <p>XT = X0c^rt</p>
+            <p>Donde:
+                <ul>
+                    <li>XT = Valor de la función en el momento t.</li>
+                    <li>X0 = Valor de la función en el periodo 0.</li>
+                    <li>c = constante mayor a 1.</li>
+                    <li>r = tasa de crecimiento.</li>
+                    <li>t = periodo.</li>
+                </ul>
+            </p>
+            <p>Entonces, como podemos deducir, cuanto mayor sea t, mayor será la magnitud por la cual se multiplicará X0.</p>
+            <h3>Pierre-Simon Laplace</h3>
+            <p>Pierre-Simon Laplace (1749-1827) fue un astrónomo, físico y matemático francés. Continuador de la mecánica newtoniana, descubrió y desarrolló la transformada de Laplace y la ecuación de Laplace. Como estadístico, sentó las bases de la teoría analítica de la probabilidad; y como astrónomo planteó la teoría nebular sobre la formación del sistema solar.</p>
+            <h3>Transformada de Laplace</h3>
+            <p>El método de la transformación de Laplace es una técnica para resolver ecuaciones diferenciales con condiciones iniciales. Se usa comúnmente para resolver problemas de sistemas y circuitos eléctricos.</p>
+            <p>Definición de la transformada de Laplace:</p>
+            <p>ℒ{𝑓(𝑡)} = ∫ 𝑒^−𝑠𝑡 𝑓(𝑡) 𝑑𝑡 (de 0 a +∞)</p>
+            <p>Por conveniencia, a menudo se denotará la transformada de Laplace como: ℒ{𝑓(𝑡)} = 𝐹(𝑠).</p>
+        </section>
+        <section id="desarrollo">
+            <h2>Desarrollo</h2>
+            <p>
+                Una empresa de tecnología observa que la cantidad de datos en su base de datos crece de manera exponencial. Actualmente, la base de datos tiene un tamaño inicial de D0=100 GB, y se estima que la tasa de crecimiento mensual es del 5%, es decir, k=0.05 meses.
+            </p>
+            <p>
+                1.- Usa la Transformada de Laplace para resolver la ecuación diferencial que modela este crecimiento, (dD(t))/dt=kD(t), y obtén la solución general D(t).
+            </p>
+            <p>
+                2.- Calcular el tamaño esperado de la base de datos en 6 meses (t=6).
+            </p>
+            <p>
+                3.- Determinar cuánto tiempo tomará para que la base de datos alcance un tamaño crítico de 200 GB.
+
+            <article id="seccion1">
+                <h3>Sección 1</h3>
+                <p>
+                    <strong>Paso 1.- Aplicación de la Transformada de Laplace a la Ecuación Diferencial</strong>
+                    <br>
+                    Tomando la ecuación de crecimiento de datos en el dominio del tiempo:
+                    <br>
+                    <code>(dD(t))/dt = kD(t)</code>
+                    <br>
+                    Sabemos que la transformada de Laplace de la derivada de una función <code>f(t)</code> es:
+                    <br>
+                    <code>ℒ{d/dt f(t)} = sF(s) - f(0)</code>
+                    <br>
+                    Donde <code>F(s)</code> es la transformada de Laplace de <code>f(t)</code> y <code>f(0)</code> es el valor inicial de la función.
+                    <br>
+                    Aplicamos la transformada de Laplace a ambos lados de la ecuación:
+                    <br>
+                    <code>L{dD(t)/dt} = L{kD(t)}</code>
+                    <br>
+                    La transformada de Laplace de la derivada <code>dD(t)/dt</code> es:
+                    <br>
+                    <code>sD(s) - D(0)</code>
+                    <br>
+                    Y la transformada de Laplace de <code>kD(t)</code> es:
+                    <br>
+                    <code>kD(s)</code>
+                    <br>
+                    Entonces, la ecuación transformada es:
+                    <br>
+                    <code>sD(s) - D(0) = kD(s)</code>
+                </p>
+                <p>
+                    <strong>Paso 2.- Despejar D(s)</strong>
+                    <br>
+                    Ahora resolvemos para <code>D(s)</code>. Primero, agrupamos los términos que contienen <code>D(s)</code>:
+                    <br>
+                    <code>sD(s) - kD(s) = D(0)</code>
+                    <br>
+                    Factorizamos <code>D(s)</code>:
+                    <br>
+                    <code>D(s)(s - k) = D(0)</code>
+                    <br>
+                    Despejamos <code>D(s)</code>:
+                    <br>
+                    <code>D(s) = D(0) / (s - k)</code>
+                </p>
+                <p>
+                    <strong>Paso 3.- Sustituir los Valores Conocidos</strong>
+                    <br>
+                    Sustituyendo los valores de <code>D(0) = 100 GB</code> y <code>k = 0.05</code>, obtenemos:
+                    <br>
+                    <code>D(s) = 100 / (s - 0.05)</code>
+                    <br>
+                    Este es el resultado en el dominio <code>s</code>.
+                </p>
+                <p>
+                    <strong>Paso 4.- Aplicación de la Transformada Inversa de Laplace</strong>
+                    <br>
+                    Sabemos que la transformada inversa de <code>1 / (s - a)</code> es <code>e^at</code>, por lo tanto:
+                    <br>
+                    <code>L^(-1){1 / (s - 0.05)} = e^0.05t</code>
+                    <br>
+                    Por lo tanto:
+                    <br>
+                    <code>D(t) = 100e^0.05t</code>
+                </p>
+                
+            </article>
+            
+            <article id="seccion2">
+                <h3>Sección 2</h3>
+                <p>
+                    <strong>Parte 2.- Calcular el tamaño esperado de la base de datos en 6 meses</strong>
+                    <br>
+                    Ahora que ya tenemos la ecuación, solo falta sustituir <code>t</code> con el número de meses:
+                    <br>
+                    <code>D(6) = 100e^(0.05 * 6)</code>
+                    <br>
+                    Multiplicamos los exponentes:
+                    <br>
+                    <code>D(6) = 100e^0.3</code>
+                    <br>
+                    Multiplicamos el 100 por <code>e</code>:
+                    <br>
+                    <code>D(6) ≈ 100 × 1.3499 = 134.99 GB</code>
+                    <br>
+                    El tamaño esperado de la base de datos después de 6 meses es de 134.99 GB.
+                </p>
+            </article>
+            
+            <article id="seccion3">
+                <h3>Sección 3</h3>
+                <p>
+                    <strong>Parte 3.- Determinar cuánto tiempo tomará para que la base de datos alcance un tamaño crítico de 200 GB</strong>
+                    <br>
+                    Por último, tenemos que igualar los 200 GB con <code>D(t)</code>:
+                    <br>
+                    <code>200 = 100e^(0.05 * t)</code>
+                    <br>
+                    Simplificamos:
+                    <br>
+                    <code>2 = e^(0.05 * t)</code>
+                    <br>
+                    Aplicamos <code>ln</code> en ambos lados:
+                    <br>
+                    <code>ln(2) = 0.05t</code>
+                    <br>
+                    Despejamos <code>t</code>:
+                    <br>
+                    <code>t = ln(2) / 0.05 ≈ 13.86 meses</code>
+                    <br>
+                    Por lo tanto, tomará aproximadamente 13.86 meses (aproximadamente 14 meses) para que la base de datos alcance los 200 GB.
+                </p>
+            </article>
+        </section>
+        
+        <section id="conclusion">
+            <h2>Conclusión</h2>
+            <p>
+                En conclusión, la transformada de Laplace es una herramienta muy útil y está en muchas cosas que usamos sin darnos cuenta en nuestro día a día. En este caso, nos ayudó a resolver una ecuación que parecía complicada al principio, pero al final resultó bastante sencilla con este método.
+                Además, nos permite hacer predicciones como calcular el tamaño de una base de datos en el futuro o saber cuándo va a llegar a un límite crítico. Esto es muy importante porque todo gira en torno a los datos y cómo manejarlos de la mejor manera posible.
+            </p>
+        </section>
+        
+        <section id="referencias">
+            <h2>Referencias Bibliográficas</h2>
+            <ul>
+                <li>What Is a Database? (2020a, noviembre 24). <a href="https://www.oracle.com/mx/database/what-is-database/">https://www.oracle.com/mx/database/what-is-database/</a></li>
+                <li>Westreicher, G. (2022, 24 noviembre). Crecimiento exponencial Qué es, definición y concepto. Economipedia. <a href="https://economipedia.com/definiciones/crecimiento-exponencial.html">https://economipedia.com/definiciones/crecimiento-exponencial.html</a></li>
+                <li>Sotomayor, V. (2024, 2 enero). Ecuaciones diferenciales: la herramienta que todo ingeniero debe poseer - EDEM Escuela de Empresarios. <a href="https://edem.eu/ecuaciones-diferenciales-la-herramienta-que-todo-ingeniero-debe-poseer/#:~:text=En%20t%C3%A9rminos%20generales%2C%20una%20ecuaci%C3%B3n,de%20variaci%C3%B3n%20de%20estas%20cantidades.">https://edem.eu/ecuaciones-diferenciales-la-herramienta-que-todo-ingeniero-debe-poseer/</a></li>
+                <li>Del Rio, A. Q. (2019, 4 septiembre). 4.5 LaPlace | Estadística básica edulcorada. <a href="https://bookdown.org/aquintela/EBE/laplace.html">https://bookdown.org/aquintela/EBE/laplace.html</a></li>
+            </ul>
+        </section>
